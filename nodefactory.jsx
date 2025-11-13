@@ -1,7 +1,7 @@
 
 import React from "react";
 import NodeBase from "./nodebase";
-import { NODE_DEFINITIONS } from "../nodes/nodedef";
+import { NODE_DEFINITIONS } from "./nodedef";
 
 export default function NodeFactory({ type, data, id }) {
   const nodeDef = NODE_DEFINITIONS[type];
@@ -20,3 +20,4 @@ export default function NodeFactory({ type, data, id }) {
     />
   );
 }
+
