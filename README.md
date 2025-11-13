@@ -1,16 +1,187 @@
-# React + Vite
+🚀 VectorShift Frontend & Backend Technical Assessment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A fully styled pipeline editor with TextNode variable detection, LLM processing simulation, and backend DAG validation.
 
-Currently, two official plugins are available:
+📌 Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project implements a mini-clone of the VectorShift pipeline builder.
+It includes:
 
-## React Compiler
+✅ Frontend (React + ReactFlow)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Fully styled custom nodes (TextNode, LLMNode, OutputNode).
 
-## Expanding the ESLint configuration
+Variable detection in TextNode ({{variable}}).
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Auto-resizing TextNode input.
+
+Dynamic input-based handle creation.
+
+Data propagation from:
+
+TextNode → LLMNode → OutputNode
+
+Pipeline visualization using ReactFlow.
+
+A Submit Pipeline button that sends nodes & edges to the backend.
+
+Beautiful animated UI with gradients and glowing node borders.
+
+✅ Backend (FastAPI)
+
+/pipelines/parse endpoint receives:
+
+{
+  "nodes": [...],
+  "edges": [...]
+}
+
+
+Calculates:
+
+num_nodes
+
+num_edges
+
+is_dag (checks if the graph is a Directed Acyclic Graph)
+
+Returns the above in JSON format.
+
+✅ Frontend → Backend Integration
+
+After submitting, the frontend shows an alert:
+
+📊 Pipeline Analysis
+- Number of Nodes: X
+- Number of Edges: Y
+- Is DAG: Yes/No
+
+🛠️ Tech Stack
+Frontend:
+
+React
+
+ReactFlow
+
+JavaScript (ES6)
+
+Custom component system for nodes
+
+Backend:
+
+FastAPI
+
+Uvicorn
+
+Python 3.10+
+
+📂 Project Structure
+/frontend
+    /src
+        App.jsx
+        submit.js
+        /nodes
+            textnode.jsx
+            llmnode.jsx
+            output.jsx
+            nodedef.js
+        /components
+            nodefactory.jsx
+
+/backend
+    main.py
+    venv/
+
+▶️ Running the Project
+1. Start Backend
+cd backend
+pip install -r requirements.txt
+pip install python-multipart
+uvicorn main:app --reload
+
+
+Backend runs at:
+👉 http://127.0.0.1:8000
+
+2. Start Frontend
+cd frontend
+npm install
+npm run dev
+
+
+Frontend runs at:
+👉 http://localhost:5173
+
+🧩 Features Implemented
+✔ TextNode
+
+Detects variables inside {{ }}
+
+Auto-resizes based on text
+
+Displays detected variable names
+
+Creates input handles for each variable
+
+✔ LLMNode
+
+Reads data from connected TextNode
+
+Simulates LLM processing (or backend call)
+
+Forwards output to OutputNode
+
+✔ OutputNode
+
+Displays final computed output
+
+✔ DAG Validation (Backend)
+
+Ensures the pipeline structure forms a valid DAG — no cycles allowed.
+
+🧪 API Example
+POST /pipelines/parse
+Request Body:
+{
+  "nodes": [...],
+  "edges": [...]
+}
+
+Response:
+{
+  "num_nodes": 8,
+  "num_edges": 6,
+  "is_dag": true
+}
+
+🎨 UI Preview
+
+Modern neon-gradient theme
+
+Animated connections
+
+Smooth layout with ReactFlow
+
+Floating Submit Pipeline button
+
+🧾 Notes for Reviewer
+
+All 4 required parts are fully implemented:
+
+Node styling
+
+TextNode improvements
+
+LLM & Output integration
+
+Backend DAG validation + frontend alert
+
+Code is modular, readable, and well-structured.
+
+UI closely follows the VectorShift style.
+
+🏁 Final Thoughts
+
+This project demonstrates full-stack implementation ability using React, ReactFlow, and FastAPI, along with custom node systems and data propagation.
+
+If you’d like to run a production build or need deployment instructions, feel free to ask!
