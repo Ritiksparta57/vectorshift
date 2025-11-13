@@ -9,12 +9,12 @@ import ReactFlow, {
 } from "reactflow";
 import "reactflow/dist/style.css";
 import { submitPipeline } from "./submit";
-import NodeFactory from "./components/nodefactory";
-import { NODE_DEFINITIONS } from "./nodes/nodedef";
+import NodeFactory from "./nodefactory";
+import { NODE_DEFINITIONS } from "./nodedef";
 
-import TextNode from "./nodes/textnode";
-import LLMNode from "./nodes/llmnode";
-import OutputNode from "./nodes/output";
+import TextNode from "./textnode";
+import LLMNode from "./llmnode";
+import OutputNode from "./output";
 
 const initialNodes = [
   { id: "input1", type: "input", position: { x: 100, y: 100 }, data: { label: "Provide data" } },
