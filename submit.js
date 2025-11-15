@@ -1,7 +1,7 @@
 
 export async function submitPipeline(nodes, edges) {
   try {
-    const response = await fetch("http://127.0.0.1:8000/pipelines/parse", {
+    const response = await fetch("https://vectorshift-j6r9.onrender.com/pipelines/parse", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ nodes, edges }),
@@ -29,3 +29,4 @@ export async function submitPipeline(nodes, edges) {
     console.error("submitPipeline error:", err);
   }
 }
+
