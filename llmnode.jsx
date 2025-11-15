@@ -16,7 +16,7 @@ export default function LLMNode({ id, data }) {
       try {
         setIsLoading(true);
         setResponse("Processing input...");
-const res = await fetch("http://127.0.0.1:8000/pipelines/parse", {
+const res = await fetch("https://vectorshift-j6r9.onrender.com//pipelines/parse", {
   method: "POST",
   headers: { "Content-Type": "application/x-www-form-urlencoded" },
   body: new URLSearchParams({
@@ -63,3 +63,4 @@ setResponse(result.status || "Error: No response from backend.");
     </div>
   );
 }
+
